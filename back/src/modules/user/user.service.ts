@@ -83,6 +83,11 @@ export class UserService {
     return this.verify(newUser);
   }
 
+  async getByID(id:number){
+        const response =  await this.UserRepo.findOne({where:{id}})
+        return response
+  }
+
   async getProfile(user: UserSchema) {
     const profile = await this.validateUser(user.email);
     return profile;
