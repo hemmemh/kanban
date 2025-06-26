@@ -8,6 +8,8 @@ import { UserSchema } from './schemas/user.schema';
 import { BoardSchema } from './schemas/board.schema';
 import { CardSchema } from './schemas/card.schema';
 import { ListSchema } from './schemas/list.schema';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,6 +29,8 @@ import { ListSchema } from './schemas/list.schema';
         synchronize: true,
       }),
     }),
+    AuthModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
