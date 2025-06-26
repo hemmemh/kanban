@@ -1,0 +1,29 @@
+
+services:
+   postgres:
+     image: postgres:15.1
+     volumes:
+       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+       - postgres_microservice_back:/var/lib/postgresql/data
+     environment:
+       POSTGRES_USER: kanban
+       POSTGRES_PASSWORD: kanban
+       POSTGRES_DB: kanban
+     ports:
+       - 5633:5432
+     restart: unless-stopped
+ 
+   back:
+     build: back/.
+     environment:
+       - ENV
+     command: npm run start:${ENV:-prod}
+     ports:
+       - 5200:5200
+     depends_on:
+       - postgres
+
+
+ 
+volumes:
+  postgres_microservice_back:
