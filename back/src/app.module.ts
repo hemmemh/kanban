@@ -10,6 +10,7 @@ import { CardSchema } from './schemas/card.schema';
 import { ListSchema } from './schemas/list.schema';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
+import { BoardModule } from './modules/board/board.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -30,7 +31,8 @@ import { UserModule } from './modules/user/user.module';
       }),
     }),
     AuthModule,
-    UserModule
+    UserModule,
+    BoardModule,
   ],
   controllers: [AppController],
   providers: [AppService],
