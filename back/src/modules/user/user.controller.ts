@@ -12,7 +12,7 @@ import {
 
 import { UserService } from './user.service';
 import { JwtGuard, Public } from '../auth/guards/JwtGuard';
-import { UserSchema } from 'src/schemas/User.schema';
+import { UserSchema } from 'src/schemas/user.schema';
 
 
 @Controller('user')
