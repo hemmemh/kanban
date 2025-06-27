@@ -1,4 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger"
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
 
 export class CreateBadgeDTO {
 
@@ -11,7 +11,10 @@ export class CreateBadgeDTO {
   @ApiProperty({ example: 0, description: 'Позиция метки' })
   pos:number
 
-  @ApiProperty({ example: 1, description: 'ID карточки' })
+  @ApiPropertyOptional({ example: 1, description: 'ID карточки' })
   cardId?:number
+
+  @ApiProperty({ example: 1, description: 'ID доски' })
+  boardId:number
 
 }

@@ -7,6 +7,7 @@ import { CreateBadgeDTO } from './dtos/create-badge.dto';
 import { CardSchema } from 'src/schemas/card.schema';
 import { UpdateBadgeDTO } from './dtos/update-badge.dto';
 import { GetAllBadgesDTO } from './dtos/get-all-badges.dto';
+import { BoardService } from '../board/board.service';
 
 @Injectable()
 export class BadgeService {
@@ -15,7 +16,8 @@ export class BadgeService {
     constructor(
         @InjectRepository(BadgeSchema)
         private badgeSchema: Repository<BadgeSchema>,
-        private cardService:CardService
+        private cardService:CardService,
+        private boardService:BoardService,
       ) {}
 
       async create(dto:CreateBadgeDTO){  
@@ -27,10 +29,15 @@ export class BadgeService {
              }
              cards.push(card)
           }
-         
+          const board = await this.boardService.getByID(dto.boardId)
+
+         if(!board){
+               throw new BadRequestException('Не удалось найти доску');
+         }
             const createBadge = this.badgeSchema.create({
               name:dto.name,
               color:dto.color,
+              board,
               cards
             }) 
             
