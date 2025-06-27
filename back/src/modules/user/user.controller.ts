@@ -13,7 +13,7 @@ import {
 import { UserService } from './user.service';
 import { JwtGuard, Public } from '../auth/guards/JwtGuard';
 import { UserSchema } from 'src/schemas/user.schema';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { LoginDTO } from './dtos/login.dto';
 
 @ApiTags('users')
@@ -33,18 +33,21 @@ export class UserController {
     return this.userService.login(dto);
   }
 
+  @ApiBearerAuth()
   @UseGuards(JwtGuard)
   @Get('logout')
   logout(@Res() res) {
     return this.userService.logout(res);
   }
 
+  @ApiBearerAuth()
   @UseGuards(JwtGuard)
   @Get('getProfile')
   getProfile(@Req() req) {
     return this.userService.getProfile(req.user);
   }
-
+  
+  @ApiBearerAuth()
   @UseGuards(JwtGuard)
   @Delete(':id')
   delete(@Param('id') id: string) {
