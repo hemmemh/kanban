@@ -13,21 +13,23 @@ import {
 import { UserService } from './user.service';
 import { JwtGuard, Public } from '../auth/guards/JwtGuard';
 import { UserSchema } from 'src/schemas/user.schema';
+import { ApiTags } from '@nestjs/swagger';
+import { LoginDTO } from './dtos/login.dto';
 
-
+@ApiTags('users')
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Public()
   @Post('registration')
-  registration(@Body() dto: UserSchema) {
+  registration(@Body() dto: LoginDTO) {
     return this.userService.register(dto);
   }
 
   @Public()
   @Post('login')
-  login(@Body() dto: UserSchema) {
+  login(@Body() dto: LoginDTO) {
     return this.userService.login(dto);
   }
 
