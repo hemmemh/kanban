@@ -21,7 +21,7 @@ export class CardService {
                  if(!list){
                    throw new BadRequestException('Не удалось найти колонку');
                  }
-                const createList = this.cardSchema.create({
+                const createCard = this.cardSchema.create({
                   name:dto.name,
                   color:dto.color,
                   pos:dto.pos,
@@ -29,7 +29,7 @@ export class CardService {
                 }) 
                 
                 try {
-                  const response =  await this.cardSchema.save(createList)
+                  const response =  await this.cardSchema.save(createCard)
                   const card = await this.cardSchema.findOne({where:{id:response.id}})
                   return card
                 } catch (error) {
