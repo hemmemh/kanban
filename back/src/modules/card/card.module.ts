@@ -12,5 +12,6 @@ import { ListModule } from '../list/list.module';
     TypeOrmModule.forFeature([CardSchema]),
     ListModule,
   ],
+  exports:[CardService]
 })
 export class CardModule {}

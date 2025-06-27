@@ -13,6 +13,7 @@ import { UserModule } from './modules/user/user.module';
 import { BoardModule } from './modules/board/board.module';
 import { ListModule } from './modules/list/list.module';
 import { CardModule } from './modules/card/card.module';
+import { BadgeModule } from './modules/badge/badge.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -36,6 +37,7 @@ import { CardModule } from './modules/card/card.module';
     UserModule,
     ListModule,
     CardModule,
+    BadgeModule,
     BoardModule,
   ],
   controllers: [AppController],

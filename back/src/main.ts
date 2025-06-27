@@ -13,6 +13,7 @@ async function bootstrap() {
     .addTag('boards', 'Операции с досками')
     .addTag('lists', 'Операции с колонками')
     .addTag('cards', 'Операции с карточками')
+    .addTag('badges', 'Операции с меткамии')
     .addBearerAuth()
     .build();
 

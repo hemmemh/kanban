@@ -15,7 +15,7 @@ export class BadgeSchema {
   color: string
 
   @ManyToMany(() => CardSchema, (card) => card.badges, { onDelete: 'CASCADE'})
-  cards: CardSchema
+  cards: CardSchema[]
 
 
 
