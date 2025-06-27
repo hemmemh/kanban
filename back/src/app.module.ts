@@ -12,6 +12,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { BoardModule } from './modules/board/board.module';
 import { ListModule } from './modules/list/list.module';
+import { CardModule } from './modules/card/card.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -34,6 +35,7 @@ import { ListModule } from './modules/list/list.module';
     AuthModule,
     UserModule,
     ListModule,
+    CardModule,
     BoardModule,
   ],
   controllers: [AppController],

@@ -12,6 +12,7 @@ import { BoardModule } from '../board/board.module';
     TypeOrmModule.forFeature([ListSchema]),
     BoardModule,
   ],
+  exports:[ListService]
 
 })
 export class ListModule {}
