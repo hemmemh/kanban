@@ -6,4 +6,6 @@ export class UpdateBoardDTO {
   id:number
   @ApiProperty({ example: 'доска-обновлена', description: 'Новое имя доски' })
   name:string
+  @ApiProperty({ example: 'adw32-обновленное.jpeg', description: 'Имя изображения' })
+  image:string
 }
