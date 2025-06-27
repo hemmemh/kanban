@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateBoardDTO } from './dtos/create-board.dto';
 import { UserService } from '../user/user.service';
 import { UpdateBoardDTO } from './dtos/update-board.dto';
+import { GetAllBoardsDTO } from './dtos/get-all-boards.dto';
 
 @Injectable()
 export class BoardService {
@@ -66,10 +67,26 @@ export class BoardService {
       
     } 
 
-  async getByID(id:number){
-        const response =  await this.boardSchema.findOne({where:{id}})
-        return response
-  }
+        async getByID(id:number){
+              const response =  await this.boardSchema.findOne({where:{id}})
+              return response
+        }
+
+        async getAll(dto:GetAllBoardsDTO){
+          try {
+          const query = this.boardSchema.createQueryBuilder('boards')
+  
+          if(dto.ownerId){
+              query.andWhere('boards.ownerId = :boardId', {ownerId:dto.ownerId})
+          }
+
+          return await query.getMany()
+          
+          } catch (error) {
+              throw new BadRequestException(`Не удалось получить доски: ${error?.message || ''}`)
+          }
+  
+        }
 
 
 }
