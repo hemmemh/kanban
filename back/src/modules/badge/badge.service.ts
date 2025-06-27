@@ -6,6 +6,7 @@ import { CardService } from '../card/card.service';
 import { CreateBadgeDTO } from './dtos/create-badge.dto';
 import { CardSchema } from 'src/schemas/card.schema';
 import { UpdateBadgeDTO } from './dtos/update-badge.dto';
+import { GetAllBadgesDTO } from './dtos/get-all-badges.dto';
 
 @Injectable()
 export class BadgeService {
@@ -72,9 +73,23 @@ export class BadgeService {
           
         } 
     
-          async getByID(id:number){
+        async getByID(id:number){
             const response =  await this.badgeSchema.findOne({where:{id}})
             return response
+      }
+
+      async getAll(dto:GetAllBadgesDTO){
+        try {
+        const query = this.badgeSchema.createQueryBuilder('badges')
+
+        if(dto.boardId){
+            query.andWhere('badges.boardId = :boardId', {boardId:dto.boardId})
+        }
+        return await query.getMany()
+        } catch (error) {
+            throw new BadRequestException(`Не удалось получить метки: ${error?.message || ''}`)
+        }
+
       }
 
 
