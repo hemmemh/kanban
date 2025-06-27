@@ -66,7 +66,7 @@ export class BoardService {
       
     } 
 
-      async getByID(id:number){
+  async getByID(id:number){
         const response =  await this.boardSchema.findOne({where:{id}})
         return response
   }

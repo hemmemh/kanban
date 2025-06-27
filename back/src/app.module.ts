@@ -11,6 +11,7 @@ import { ListSchema } from './schemas/list.schema';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { BoardModule } from './modules/board/board.module';
+import { ListModule } from './modules/list/list.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -32,6 +33,7 @@ import { BoardModule } from './modules/board/board.module';
     }),
     AuthModule,
     UserModule,
+    ListModule,
     BoardModule,
   ],
   controllers: [AppController],

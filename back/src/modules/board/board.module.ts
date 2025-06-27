@@ -12,5 +12,6 @@ import { UserModule } from '../user/user.module';
     TypeOrmModule.forFeature([BoardSchema]),
     UserModule,
   ],
+   exports: [BoardService],
 })
 export class BoardModule {}

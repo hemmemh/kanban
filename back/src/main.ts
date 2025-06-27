@@ -11,6 +11,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('users', 'Операции с пользователями')
     .addTag('boards', 'Операции с досками')
+    .addTag('lists', 'Операции с колонками')
     .addBearerAuth()
     .build();
 
