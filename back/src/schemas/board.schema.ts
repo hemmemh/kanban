@@ -13,7 +13,7 @@ export class BoardSchema {
   name: string
 
   @Column()
-  image: number
+  image: string
 
 
   @ManyToOne(() => UserSchema, (user) => user.boards, { onDelete: 'CASCADE'})

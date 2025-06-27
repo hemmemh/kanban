@@ -2,7 +2,9 @@ import { Body, Controller, Delete, Param, ParseIntPipe, Patch, Post, Query } fro
 import { BoardService } from './board.service';
 import { CreateBoardDTO } from './dtos/create-board.dto';
 import { UpdateBoardDTO } from './dtos/update-board.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('boards')
 @Controller('board')
 export class BoardController {
 
