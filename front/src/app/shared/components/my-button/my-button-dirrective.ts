@@ -27,6 +27,7 @@ private destroy$ = new Subject<void>()
 
 
   ngOnInit(): void {
+    this.renderer.setStyle(this.elementRef.nativeElement, 'color',enhanceColor(this.color, 1.4, 0.4));
 
   fromEvent<Event>(this.elementRef.nativeElement,'mouseenter')
   .pipe(takeUntil(this.destroy$))
@@ -43,7 +44,7 @@ private destroy$ = new Subject<void>()
    fromEvent<Event>(this.elementRef.nativeElement,'mousedown')
   .pipe(takeUntil(this.destroy$))
   .subscribe(ev =>{
-    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', enhanceColor(this.color));
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', enhanceColor(this.color, 0.7 , 0.9));
   })
 
   fromEvent<Event>(this.elementRef.nativeElement,'mouseup')

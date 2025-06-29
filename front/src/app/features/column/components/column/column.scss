@@ -1,0 +1,17 @@
+
+:host{
+    width: 300px;
+    flex: 0 0 300px;
+    display: block;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+
+.body{
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

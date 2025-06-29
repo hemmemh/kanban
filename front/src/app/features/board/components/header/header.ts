@@ -4,7 +4,7 @@ import { MyButton } from '../../../../shared/components/my-button/my-button';
 
 @Component({
   selector: 'app-header',
-  imports: [Contain, MyButton],
+  imports: [Contain],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })

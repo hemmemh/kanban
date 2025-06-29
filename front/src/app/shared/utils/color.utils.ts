@@ -62,7 +62,7 @@ function rgbToHex(r: number, g: number, b: number): string {
 }
 
 
-export function enhanceColor(hexColor: string, saturationBoost =1, lightnessBoost = 0.8): string | null {
+export function enhanceColor(hexColor: string, saturationBoost =1, lightnessBoost = 1): string | null {
   const rgb = hexToRgb(hexColor.slice(0, 7)); // отбрасываем альфу, если есть
   if (!rgb) return null;
 

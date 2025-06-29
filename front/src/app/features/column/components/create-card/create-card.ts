@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { MyButton } from '../../../../shared/components/my-button/my-button';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-create-card',
   imports: [MyButton],
-  templateUrl: './header.html',
-  styleUrl: './header.scss'
+  templateUrl: './create-card.html',
+  styleUrl: './create-card.scss'
 })
-export class Header {
+export class CreateCard {
 
 
   @Input({required:true}) color!:string
