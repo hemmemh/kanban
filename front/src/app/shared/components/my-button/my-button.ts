@@ -13,7 +13,10 @@ export class MyButton {
  
 
   @Input() className:string = ''
-  @Input() color:string = '#f2f'
+  @Input() disabled:boolean = false
+  @Input() filled:boolean = false
+  @Input() focus:boolean = true
+  @Input() color:string = '#fff'
 
 
 

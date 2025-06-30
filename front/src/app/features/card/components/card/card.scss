@@ -1,0 +1,40 @@
+.main{
+    background:#fff;
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+   border: 2px solid transparent;
+  
+    @media (any-hover: hover) {
+        &:hover {
+           border: 2px solid #4ab4d4;
+           .closed{
+             width: 50px;
+             pointer-events: visible;
+           }
+
+         
+        }
+    }
+}
+
+
+.info{
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.closed{
+    width: 0px;
+    pointer-events: none;
+    overflow: hidden;
+    transition: all ease 0.3s;
+    span{
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid #b9b4b4;
+    }
+}

@@ -1,0 +1,23 @@
+.body{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tag{
+    height: 8px; 
+    width: 40px;
+    border-radius: 10px;
+    background-color: #f2f;
+    cursor: pointer;
+}
+
+.actions{
+    opacity: 0;
+    transition: all ease 0.3s;
+    &.visible{
+       transition: all ease 0.3s;
+       opacity: 1;  
+
+    }
+}

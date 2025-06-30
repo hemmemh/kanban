@@ -1,10 +1,11 @@
 import { Component, HostBinding } from '@angular/core';
 import { Header } from '../header/header';
 import { CreateCard } from '../create-card/create-card';
+import { Card } from '../../../card/components/card/card';
 
 @Component({
   selector: 'app-column',
-  imports: [Header, CreateCard],
+  imports: [Header, CreateCard, Card],
   templateUrl: './column.html',
   styleUrl: './column.scss',
 
