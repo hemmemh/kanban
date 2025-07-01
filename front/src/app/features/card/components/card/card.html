@@ -1,11 +1,11 @@
-<div (mouseenter)="focused = true" (mouseleave)="focused = false" class="main">
+<div  (mouseenter)="focused = true" (mouseleave)="focused = false" class="card">
     <div class="body">
         <app-header [focused]="focused"/>
         <div class="info">
             <div class="closed">
                 <span></span>
             </div>
-            <div class="text">dawdaw d adad awd adaw dawda dadadawdwada wdad awdawdawdadawdawda</div>
+            <div class="text">{{card.name}}</div>
         </div>
         <app-footer/>
     </div>

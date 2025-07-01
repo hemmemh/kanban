@@ -3,9 +3,13 @@
     width: 300px;
     flex: 0 0 300px;
     display: block;
+    
+    font-size: 16px;
+}
+
+.main{
     border-radius: 10px;
     padding: 8px;
-    font-size: 16px;
 }
 
 
@@ -16,6 +20,7 @@
 }
 
 .cards{
+    user-select: none;
     display: flex;
     flex-direction: column;
     gap: 8px;

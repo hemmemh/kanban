@@ -5,7 +5,10 @@ import { MyButton } from '../../../../shared/components/my-button/my-button';
   selector: 'app-create-card',
   imports: [MyButton],
   templateUrl: './create-card.html',
-  styleUrl: './create-card.scss'
+  styleUrl: './create-card.scss',
+    host:{
+    'data-create': 'true'
+  }
 })
 export class CreateCard {
 

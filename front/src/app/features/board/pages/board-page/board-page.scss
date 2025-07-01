@@ -1,8 +1,9 @@
-main{
+.main{
     height: 100vh;
     position: relative;
 }
 .body{
+    height: 100%;
     position: relative;
     z-index: 1;
 }
@@ -21,6 +22,7 @@ main{
 }
 
 .list-containter{
+    height: 100%;
     padding: 10px 0;
     display: flex;
     gap: 10px;

@@ -1,9 +1,12 @@
-<div class="main">
+<div [ngStyle]="{'backgroundColor':color}"  class="main">
     <div class="body">
         <app-header [color]="color"/>
         <div class="cards">
-            <app-card/>
-            <app-create-card [color]="color"/>
+            <app-card [card]="{name:'1', pos:1}"/>
+            <app-card [card]="{name:'2', pos:2}"/>
+            <app-card [card]="{name:'3', pos:3}"/>
+            <app-card [card]="{name:'4', pos:4}"/>
+            <app-create-card   [color]="color"/>
         </div>
     </div>
 </div>

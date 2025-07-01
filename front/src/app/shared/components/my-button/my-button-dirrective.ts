@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { filter, fromEvent, Subject, takeUntil } from 'rxjs';
 import { enhanceColor } from '../../utils/color.utils';
 
 @Directive({
   selector: '[appMyButtonDirrective]'
 })
-export class MyButtonDirrective implements OnInit, OnDestroy{
+export class MyButtonDirrective implements AfterViewInit, OnDestroy{
 
 
 
@@ -13,6 +13,7 @@ export class MyButtonDirrective implements OnInit, OnDestroy{
   private elementRef:ElementRef,
   private renderer: Renderer2
 ){}
+
 
 private destroy$ = new Subject<void>()
 
@@ -29,7 +30,7 @@ private destroy$ = new Subject<void>()
   }
 
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.renderer.setStyle(this.elementRef.nativeElement, 'color',enhanceColor(this.color, 1.4, 0.4));
     if(this.disabled){
       this.renderer.setStyle(this.elementRef.nativeElement, 'pointer-events', 'none');
