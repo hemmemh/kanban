@@ -94,7 +94,7 @@ export class CardDrag implements AfterViewInit {
 
     private onMouseMoveHandler(event:{clientY:number, clientX:number}){
      
-     this.updatePostition(event)
+     this.updateClonePostition(event)
      const closestColumn = this.getClosestColumn(event)
 
     if(closestColumn){
@@ -138,7 +138,7 @@ export class CardDrag implements AfterViewInit {
     return clonedElement;
   }
 
-  private updatePostition(event:{clientY:number, clientX:number}){
+  private updateClonePostition(event:{clientY:number, clientX:number}){
     if(!this.clone) return
 
       const deltaX = event.clientX - this.currentMouseXPosition

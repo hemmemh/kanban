@@ -1,0 +1,23 @@
+.main{
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--text-color);
+    border-radius: 6px;
+    padding: 5px 10px;
+
+    &.active{
+         border: 1px solid var(--primary-color);
+    }
+}
+
+.icon{
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+}
+
+input{
+    border: none;
+    outline: none;
+    flex: 1 1 auto;
+}

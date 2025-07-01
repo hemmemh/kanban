@@ -1,0 +1,3 @@
+<button (mouseenter)="focused = true" (mouseleave)="focused = false"   [ngStyle]="focused ? styledFocused : styled"  >
+    <ng-content/>
+</button>

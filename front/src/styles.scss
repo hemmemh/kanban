@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --grey-color:#cacaca;
+  --dark-orange-color:#50281c;
+  --light-orange-color:#f7c8ba;
+  --primary-color: #007bff;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif;  overflow: hidden;}
 

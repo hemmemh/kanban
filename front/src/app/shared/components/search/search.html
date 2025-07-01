@@ -1,0 +1,6 @@
+<div [ngClass]="{'active':focused || value !== ''}"  class="main">
+    <div class="icon">
+        <span class="material-icons">search</span>
+    </div>
+    <input type="text" placeholder="Поиск" (focus)="setFocused(true)"   (blur)="onBlur()"  [(ngModel)]="value" (input)="onInputChange($event)">
+</div>
