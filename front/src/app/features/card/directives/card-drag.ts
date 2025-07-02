@@ -1,6 +1,7 @@
 import { AfterViewInit, Directive, DOCUMENT, ElementRef, Inject, Input } from '@angular/core';
 import { debounce, debounceTime, filter, fromEvent, Subject, takeUntil } from 'rxjs';
 import { CardModel } from '../models/card.model';
+import { E } from '@angular/cdk/keycodes';
 
 @Directive({
   selector: '[appCardDrag]'
@@ -22,6 +23,7 @@ export class CardDrag implements AfterViewInit {
   cardsContainer:Element | null = null
   currentMouseYPosition = 0
   currentMouseXPosition = 0
+  isDragging = false
   currentTop = 0
   currentLeft = 0
   elementHeight = 0
@@ -84,15 +86,22 @@ export class CardDrag implements AfterViewInit {
        event.stopPropagation();
        this.currentMouseYPosition = event.clientY
        this.currentMouseXPosition = event.clientX
-       this.clone = this.cloneElement()
+       
        this.currentTop = this.elementRef.nativeElement.getBoundingClientRect().top
        this.currentLeft = this.elementRef.nativeElement.getBoundingClientRect().left
        this.elementHeight = this.elementRef.nativeElement.offsetHeight
-       this.document.body.append(this.clone) 
+       
   }
 
     private onMouseMoveHandler(event:{clientY:number, clientX:number}){
-     
+     if(!this.isDragging){
+            this.isDragging = this.checkDeltaCross(event)
+            if(this.isDragging){
+                this.clone = this.cloneElement()
+                this.document.body.append(this.clone) 
+            }
+            return
+     }
      this.updateClonePostition(event)
      const closestColumn = this.getClosestColumn(event)
 
@@ -109,8 +118,7 @@ export class CardDrag implements AfterViewInit {
   }
 
   private onMouseUpHandler(){
-    console.log('up');
-    
+
     if(this.dropPositionEl && this.clone && this.cardsContainer){
       this.elementRef.nativeElement.style.display = 'block'
       this.cardsContainer.replaceChild(this.elementRef.nativeElement, this.dropPositionEl)
@@ -120,10 +128,15 @@ export class CardDrag implements AfterViewInit {
       this.dropPositionEl = null
       this.clone?.remove()
       this.clone = null
+      this.isDragging = false
       this.cleaner$.next()
   }
 
 
+  private checkDeltaCross(event:{clientY:number, clientX:number}){
+     if(Math.abs(event.clientY - this.currentMouseYPosition) > 5 || Math.abs(event.clientX - this.currentMouseXPosition) > 5) return true
+     return false
+  }
 
     private cloneElement(): HTMLElement {
     const clonedElement = this.elementRef.nativeElement.cloneNode(true) as HTMLElement;
