@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { enhanceColor } from '../../utils/color.utils';
 
 @Component({
@@ -12,6 +12,7 @@ export class MyButtonFilled {
 
    @Input() color:string = '#3b79ce'
    @Input() textColor:string = '#fff'
+   @Output() onClick = new EventEmitter<MouseEvent>()
    focused = false
    styled = {'backgroundColor':this.color, 'color':this.textColor}
    styledFocused = {'backgroundColor':enhanceColor(this.color, 1, 0.8), 'color':this.textColor}

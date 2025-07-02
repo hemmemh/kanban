@@ -1,0 +1,116 @@
+.main{
+    padding: 10px;
+    background: var(--background-color);
+    border-radius: 10px;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name{
+    justify-self: center;
+}
+
+.preview{
+    display: flex;
+    &__body{
+          display: flex;
+          position: relative;
+          flex: 1 1 auto;
+          margin: 0 20px;
+          height: 130px;
+          
+    }
+
+    &__back{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        img{
+              width: 100%;
+              height: 100%; 
+              object-fit: cover;
+        }
+    }
+
+    &__content{
+        padding: 10px 5px;
+        align-items: flex-start;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        gap: 5px;
+        justify-content: space-around;
+        width: 100%;
+
+    }
+
+    &__board{
+        border-radius: 4px;
+        padding: 6px 4px;
+        background: var(--grey-color);
+        flex: 0 0 60px;
+        display: inline-flex;
+        flex-direction: column;
+        gap: 5px
+    }
+
+    &__card{
+        border-radius: 4px;
+        background: var(--background-color);
+        height: 10px;
+        flex: 0 0 10px;
+        &_length{
+             border-radius: 4px;
+        background: var(--background-color);
+        height: 40px;
+        flex: 0 0 40px;
+        }
+
+    }
+}
+
+.back{
+    &__items{
+        display: grid;
+        gap: 5px;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 80px));
+    }
+    &__item{
+        cursor: pointer;
+        border-radius: 5px;
+        overflow: hidden;
+         height: 50px;
+            @media (any-hover: hover) {
+  &:hover {
+    img{
+        transition: all ease 0.3s;
+        filter: brightness(0.7);
+    }
+  }
+ } 
+         img{
+                transition: all ease 0.3s;
+            width: 100%;
+            height: 100%;
+         }
+    }
+}
+
+.create{
+    display: flex;
+    :first-child{
+        flex: 1 1 auto;
+    }
+}

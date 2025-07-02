@@ -3,10 +3,11 @@ import { Header } from '../header/header';
 import { CreateCard } from '../create-card/create-card';
 import { Card } from '../../../card/components/card/card';
 import { CommonModule } from '@angular/common';
+import { CreateCardButton } from '../create-card-button/create-card-button';
 
 @Component({
   selector: 'app-column',
-  imports: [Header, CreateCard, Card, CommonModule],
+  imports: [Header, CreateCard,CreateCardButton, Card, CommonModule],
   templateUrl: './column.html',
   styleUrl: './column.scss',
   host:{

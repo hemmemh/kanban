@@ -1,10 +1,16 @@
 <div class="main">
     <div class="body">
-        <app-header></app-header>
-        
+        <app-header/>
         <app-contain>
         <div class="list-containter">
-           <app-column></app-column>
+           <app-column/>
+           @if (isCreateColumn) {
+            <app-create-column (onClose)="isCreateColumn = false"/>
+           } @else {
+             <app-create-column-button  (onClick)="isCreateColumn = true"/>
+           }
+           
+          
         </div>
         </app-contain>
         

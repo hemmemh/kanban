@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { MyButtonDirrective } from './my-button-dirrective';
 
 @Component({
@@ -17,6 +17,7 @@ export class MyButton {
   @Input() filled:boolean = false
   @Input() focus:boolean = true
   @Input() color:string = '#fff'
+  @Output() onClick = new EventEmitter<MouseEvent>()
 
 
 

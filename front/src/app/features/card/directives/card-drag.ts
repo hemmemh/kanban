@@ -41,7 +41,6 @@ export class CardDrag implements AfterViewInit {
     ngAfterViewInit(): void {
     const dragStart$ = fromEvent<MouseEvent>(this.elementRef.nativeElement, 'mousedown')
     .pipe(filter(el => el.button === 0))
-    .pipe(debounceTime(100))
     .pipe(takeUntil(this.destroy$));
 
     const dragEnd$ = fromEvent<MouseEvent>(this.document, 'mouseup')
@@ -110,6 +109,8 @@ export class CardDrag implements AfterViewInit {
   }
 
   private onMouseUpHandler(){
+    console.log('up');
+    
     if(this.dropPositionEl && this.clone && this.cardsContainer){
       this.elementRef.nativeElement.style.display = 'block'
       this.cardsContainer.replaceChild(this.elementRef.nativeElement, this.dropPositionEl)
