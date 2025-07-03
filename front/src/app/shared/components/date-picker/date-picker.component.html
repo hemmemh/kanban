@@ -1,0 +1,10 @@
+<div class="contain">
+    <app-my-input class="input" [placeHolder]="placeHolder" [disabled]="true" [ngModel]="value"/>
+    <app-my-button (onClick)="setCalendar(true)">
+        <span class="material-icons icon">date_range</span>
+    </app-my-button>
+    <div class="month-picker"  [ngClass]="{'visible':calendarVisible}">
+        <app-month-picker  [month]="today.month - 1"       [year]="today.year"        (onDayClick)="onDateClick($event.date)"  />
+    </div>
+ 
+</div>
