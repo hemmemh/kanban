@@ -2,6 +2,8 @@ import { AfterViewInit, Directive, DOCUMENT, ElementRef, Inject, Input } from '@
 import { debounce, debounceTime, filter, fromEvent, Subject, takeUntil } from 'rxjs';
 import { CardModel } from '../models/card.model';
 import { E } from '@angular/cdk/keycodes';
+import { Dialog } from '@angular/cdk/dialog';
+import { CardSettings } from '../modals/card-settings/card-settings';
 
 @Directive({
   selector: '[appCardDrag]'
@@ -9,6 +11,7 @@ import { E } from '@angular/cdk/keycodes';
 export class CardDrag implements AfterViewInit {
 
   constructor(
+    private dialog:Dialog,
     private elementRef:ElementRef,
     @Inject(DOCUMENT) private document: Document
   ) { }
@@ -123,6 +126,7 @@ export class CardDrag implements AfterViewInit {
       this.elementRef.nativeElement.style.display = 'block'
       this.cardsContainer.replaceChild(this.elementRef.nativeElement, this.dropPositionEl)
     }
+    if(!this.isDragging) this.openCardSettings()
   
       this.dropPositionEl?.remove()
       this.dropPositionEl = null
@@ -167,6 +171,16 @@ export class CardDrag implements AfterViewInit {
       this.isMoveTop =  event.clientY < this.currentMouseYPosition
       this.currentMouseXPosition = event.clientX
       this.currentMouseYPosition = event.clientY
+  }
+
+  private openCardSettings(){
+  
+
+    this.dialog.open(CardSettings, {
+   
+      minWidth:'600px'
+});
+
   }
 
   private updateDropPositionEl(closestColumn:Element, closestCard:Element){

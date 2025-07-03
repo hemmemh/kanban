@@ -1,0 +1,34 @@
+.main{
+  background: var(--background-color);
+  border-radius: 10px;
+}
+
+
+.header{
+     padding: 0 10px;
+     height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--grey-color);
+}
+
+.close{
+    cursor: pointer;
+}
+
+.content{
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.dateItem{
+    display: flex;
+    align-items: center;
+}
+
+.date-name{
+    flex: 1 1 auto;
+}

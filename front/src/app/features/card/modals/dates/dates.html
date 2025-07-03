@@ -1,0 +1,25 @@
+<div class="main">
+    <div class="body">
+         <div class="header">
+            <div class="name">Даты</div>
+            <div class="close">
+                 <div class="material-icons">close</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="dateItem">
+                      <div class="date-name">Начало: </div>
+                      <app-date-picker  placeHolder="Выбрать дату"  [(ngModel)]="startDate"/>
+                      <app-time-picker [interval]="15"  placeHolder="Выбрать время"   [(ngModel)]="startTime" />
+            </div>
+            <div class="dateItem">
+                      <div class="date-name">Конец: </div>
+                      <app-date-picker  placeHolder="Выбрать дату"  [(ngModel)]="endDate"/>
+                      <app-time-picker  [interval]="15"    placeHolder="Выбрать время"   [(ngModel)]="endTime" />
+            </div>
+            <div class="actions">
+                <app-my-button>Сохранить</app-my-button>
+            </div>
+        </div>
+    </div>
+</div>
