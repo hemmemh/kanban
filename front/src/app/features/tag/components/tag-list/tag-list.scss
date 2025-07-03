@@ -7,11 +7,16 @@
   
 
   &__header {
-    font-size: 16px;
-    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 12px;
   }
-
+ .close{
+    cursor: pointer;
+        display: flex;
+  align-items: center;
+ }
   &__list {
     list-style: none;
     padding: 0;

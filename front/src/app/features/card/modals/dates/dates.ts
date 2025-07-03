@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DateTime } from 'luxon';
 import { MyButton } from "../../../../shared/components/my-button/my-button";
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-dates',
@@ -18,5 +19,12 @@ export class Dates {
   startTime:DateTime  =DateTime.now()
   endDate:DateTime = DateTime.now()
   endTime:DateTime = DateTime.now()
+
+  
+  constructor(private dialogRef:DialogRef){}
+
+  close(){
+      this.dialogRef.close()
+  }
  
 }

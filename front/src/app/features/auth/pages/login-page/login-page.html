@@ -3,18 +3,18 @@
         <img src="/login/back-left.png" alt="">
     </div>
     <div class="body">
-        <div class="content">
+        <form class="content" [formGroup]="loginForm">
             <div class="logo">
             <div class="logo__image">
                 <img src="/logo.svg" alt="logo">
             </div>
             <div class="logo__name">Kanban</div>
             </div>
-            <app-my-input placeHolder="логин"/>
-            <app-my-input placeHolder="пароль"/>
-            <app-my-button color="#2e91fa" >Войти</app-my-button>
-            <app-my-button color="#2e91fa" >Регистрация</app-my-button>
-        </div>
+            <app-my-input placeHolder="логин" formControlName="email"/>
+            <app-my-input placeHolder="пароль" formControlName="password" />
+            <app-my-button (onClick)="login()" color="#2e91fa" >Войти</app-my-button>
+            <app-my-button (onClick)="registration()"  color="#2e91fa" >Регистрация</app-my-button>
+        </form>
 
     </div>
     <div class="back _right">

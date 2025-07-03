@@ -1,5 +1,10 @@
 <div class="tags">
-  <div class="tags__header">Метки</div>
+  <div class="tags__header">
+    <div class="tags__name">Метки</div>
+    <div (click)="close()" class="close">
+        <div class="material-icons">close</div>
+    </div>
+  </div>
   <ul class="tags__list">
     <li class="tag-item">
       <input type="checkbox" />

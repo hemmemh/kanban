@@ -4,7 +4,7 @@ export const routes: Routes = [
     {path:'',
         loadComponent:() => import('./features/board/pages/board-page/board-page').then(m => m.BoardPage)
     },
-    {path:'boards',
+    {path:':id/boards',
         loadComponent:() => import('./features/board/pages/boards/boards').then(m => m.Boards)
     },
     {path:'login',

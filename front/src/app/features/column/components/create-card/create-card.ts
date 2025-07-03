@@ -7,9 +7,6 @@ import { MyTextAreaComponent } from '../../../../shared/components/my-text-area/
   imports: [MyTextAreaComponent],
   templateUrl: './create-card.html',
   styleUrl: './create-card.scss',
-    host:{
-    'data-create': 'true'
-  }
 })
 export class CreateCard {
 

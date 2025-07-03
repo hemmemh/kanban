@@ -4,7 +4,7 @@ import { MyTextAreaComponent } from '../../../../shared/components/my-text-area/
 import { MyButton } from '../../../../shared/components/my-button/my-button';
 import { MyButtonFilled } from '../../../../shared/components/my-button-filled/my-button-filled';
 import { Overlay } from '@angular/cdk/overlay';
-import { Dialog } from '@angular/cdk/dialog';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { TagList } from '../../../tag/components/tag-list/tag-list';
 import { Dates } from '../dates/dates';
 
@@ -17,7 +17,18 @@ import { Dates } from '../dates/dates';
 export class CardSettings {
 
 
-    constructor(private dialog:Dialog,  private overlay: Overlay){}
+    constructor(
+      private dialog:Dialog,  
+      private overlay: Overlay, 
+      private dialogRef:DialogRef
+    ){}
+
+
+
+  close(){
+      this.dialogRef.close()
+  }
+
 
   openTagList(event:MouseEvent){
     const target = event.currentTarget as HTMLElement

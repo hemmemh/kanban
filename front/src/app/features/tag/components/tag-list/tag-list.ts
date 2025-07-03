@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MyButton } from '../../../../shared/components/my-button/my-button';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-tag-list',
@@ -9,4 +10,10 @@ import { MyButton } from '../../../../shared/components/my-button/my-button';
 })
 export class TagList {
 
+
+  constructor(private dialogRef:DialogRef){}
+
+  close(){
+      this.dialogRef.close()
+  }
 }
