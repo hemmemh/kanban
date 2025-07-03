@@ -9,9 +9,11 @@
   --background-color: #ffffff;
   --text-color: #000000;
   --grey-color:#cacaca;
+  --dark-grey-color:#999898;
   --dark-orange-color:#50281c;
   --light-orange-color:#f7c8ba;
   --primary-color: #007bff;
+  --secondary-color: #2e91fa;
 }
 
 html, body { height: 100%; }
@@ -19,6 +21,6 @@ body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif;  overflow:
 
 .material-icons {
   font-size: 1.2em;     
-     
+  font-weight: inherit;   
 
 }

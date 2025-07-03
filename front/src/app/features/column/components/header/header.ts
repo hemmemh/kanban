@@ -11,4 +11,5 @@ export class Header {
 
 
   @Input({required:true}) color!:string
+  @Input({required:true}) name!:string
 }

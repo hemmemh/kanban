@@ -3,11 +3,15 @@
         <app-header/>
         <app-contain>
         <div class="list-containter">
-           <app-column/>
+           <app-column [column]="{name:'1', pos:1}"/>
+           <app-column [column]="{name:'2', pos:2}"/>
+           <app-column [column]="{name:'3', pos:3}"/>
+           <app-column [column]="{name:'4', pos:4}"/>
+           
            @if (isCreateColumn) {
             <app-create-column (onClose)="isCreateColumn = false"/>
            } @else {
-             <app-create-column-button  (onClick)="isCreateColumn = true"/>
+             <app-create-column-button [attr.data-create]="true"  (onClick)="isCreateColumn = true"/>
            }
            
           

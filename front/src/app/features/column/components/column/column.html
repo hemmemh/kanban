@@ -1,6 +1,6 @@
-<div [ngStyle]="{'backgroundColor':color}"  class="main">
+<div   [ngStyle]="{'backgroundColor':color}"  class="main">
     <div class="body">
-        <app-header [color]="color"/>
+        <app-header [name]="column.name" [color]="color"/>
         <div class="cards">
             <app-card [card]="{name:'1', pos:1}"/>
             <app-card [card]="{name:'2', pos:2}"/>
