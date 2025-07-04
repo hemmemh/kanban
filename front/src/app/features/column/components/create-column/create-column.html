@@ -1,10 +1,10 @@
 <div class="main">
     <div class="body">
-        <app-my-input placeHolder="Введите имя колонки..."/>
+        <app-my-input [(ngModel)]="name" placeHolder="Введите имя колонки..."/>
         <div class="actions">
-            <app-my-button-filled> Добавить список</app-my-button-filled>
-            <div class="close">
-                <div (click)="onClose.emit()" class="material-icons">close</div>
+            <app-my-button-filled (onClick)="create()"> Добавить список</app-my-button-filled>
+            <div (click)="onClose.emit()" class="close">
+                <div  class="material-icons">close</div>
             </div>
             
         </div>

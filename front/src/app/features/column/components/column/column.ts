@@ -24,13 +24,7 @@ import { ColumnModel } from '../../models/column.model'
   ],
 
 })
-
-
-
-
 export class Column {
-
-   color:string = '#fde3aa'
 
    @Input({required:true}) column!:ColumnModel
 

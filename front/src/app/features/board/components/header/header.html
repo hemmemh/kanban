@@ -1,7 +1,7 @@
 <header class="main">
    <app-contain>
      <div class="body">
-        <div class="name">Имя доски</div>
+        <div class="name">{{(board$ | async)?.name }}</div>
      </div>
    </app-contain>
 </header>

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { SnackBar } from '../../../shared/components/snack-bar/snack-bar';
 import { CreateBoardDTO } from '../dto/create.board.dto';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { BoardApi } from '../api/board.api';
 import { BoardListService } from './board-list.service';
 import { UpdateBoardDTO } from '../dto/update.board.dto';
 import { GetAllBoardsDTO } from '../dto/getAllBoards.dto';
 import { SnackBarService } from '../../../shared/components/snack-bar/snack-bar.service';
+import { Board } from '../models/board.model';
 
 @Injectable()
 export class BoardService {
@@ -18,6 +19,19 @@ export class BoardService {
   ) { }
 
 
+  private board = new BehaviorSubject<Board | null>(null)
+  public board$ = this.board.asObservable()
+
+  async getByID(id:number){
+    try {
+      const board = await firstValueFrom(this.boardApi.getByID(id))
+      this.board.next(board) 
+      return board
+    } catch (error:any) {
+        this.snackBar.open(error.error.message)
+      return null
+    }
+  }
 
   async  create(dto:Omit<CreateBoardDTO, 'ownerId'>){
     try {

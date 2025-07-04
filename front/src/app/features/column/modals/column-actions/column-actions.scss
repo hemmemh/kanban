@@ -1,0 +1,45 @@
+.main{
+    border-radius: 10px;
+    background: var(--background-color);
+
+}
+
+.body{
+    padding: 10px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    width: 100%;
+    text-align: center;
+}
+
+ .close{
+    cursor: pointer;
+        display: flex;
+  align-items: center;
+ }
+
+.list{
+    display: flex;
+    flex-direction: column;
+}
+
+.item{
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: background ease 0.3s;
+    @media (any-hover: hover) {
+  &:hover {
+    transition: background ease 0.3s;
+    background: rgb(207, 207, 207);
+  }
+}
+}

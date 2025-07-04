@@ -5,6 +5,7 @@ import { ListSchema } from 'src/schemas/list.schema';
 import { Repository } from 'typeorm';
 import { BoardService } from '../board/board.service';
 import { UpdateListDTO } from './dtos/update-list.dto';
+import { GetAllListsDTO } from './dtos/get-all-list.dto';
 
 @Injectable()
 export class ListService {
@@ -70,5 +71,24 @@ export class ListService {
             const response =  await this.listSchema.findOne({where:{id}})
             return response
       }
+
+              async getAll(dto:GetAllListsDTO){
+                try {
+                const query = this.listSchema.createQueryBuilder('lists')
+                query.orderBy('lists.pos',"ASC")
+        
+                if(dto.boardId){
+                    query.andWhere('lists.boardId = :boardId', {boardId:dto.boardId})
+                }
+      
+                return await query.getMany()
+                
+                } catch (error) {
+                    throw new BadRequestException(`Не удалось получить листы: ${error?.message || ''}`)
+                }
+        
+              }
+
+      
 
 }

@@ -2,13 +2,13 @@ import { ApiPropertyOptional } from "@nestjs/swagger"
 import { Type } from "class-transformer"
 import { IsNumber, IsOptional } from "class-validator"
 
-export class GetAllBoardsDTO {
+export class GetAllListsDTO {
 
   @ApiPropertyOptional({ example: 1, description: 'ID владельца' })
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
-  ownerId?:number
+  boardId?:number
 
 
 

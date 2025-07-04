@@ -26,9 +26,20 @@ export class BoardController {
       return this.boardService.delete(id)
     }
 
+    @Get('/getByID/:id')
+    getByID(@Param('id', ParseIntPipe) id:number) {
+      return this.boardService.getByID(id)
+    }
+
+
     @Get('/getAll')
     getAll(@Query() query:GetAllBoardsDTO){
        return this.boardService.getAll(query)
+    }
+
+    @Get('/getBackImages')
+    getBackImages(){
+       return this.boardService.getBackImages()
     }
 
 }

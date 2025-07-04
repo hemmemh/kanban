@@ -1,4 +1,4 @@
-export interface ColumnModel {
+export interface UpdateListDTO {
     id:number
     name:string
     pos:number

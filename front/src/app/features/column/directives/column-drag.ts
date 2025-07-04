@@ -1,6 +1,7 @@
 import { Directive, DOCUMENT, ElementRef, Inject, Input } from '@angular/core';
 import { filter, fromEvent, Subject, takeUntil } from 'rxjs';
 import { ColumnModel } from '../models/column.model';
+import { ColumnService } from '../services/column.service';
 
 @Directive({
   selector: '[appColumnDrag]'
@@ -8,6 +9,7 @@ import { ColumnModel } from '../models/column.model';
 export class ColumnDrag {
 
 constructor(
+  private columnService:ColumnService,
     private elementRef:ElementRef,
     @Inject(DOCUMENT) private document: Document
   ) { }
@@ -46,19 +48,19 @@ constructor(
 
 
       const dragStart$ = fromEvent<MouseEvent>(this.elChild, 'mousedown')
-      .pipe(filter(el => el.button === 0))
+      .pipe(filter(el => el.button === 0 && !this.columnService.Load))
       .pipe(takeUntil(this.destroy$));
   
       const dragEnd$ = fromEvent<MouseEvent>(this.document, 'mouseup')
-      .pipe(filter(el => el.button === 0))
+      .pipe(filter(el => el.button === 0 && !this.columnService.Load))
       .pipe(takeUntil(this.cleaner$));
   
       const esc$ = fromEvent<KeyboardEvent>(this.document, 'keydown')
-      .pipe(filter(el => el.key === 'Escape'))
+      .pipe(filter(el => el.key === 'Escape' && !this.columnService.Load))
       .pipe(takeUntil(this.cleaner$));
       
       const drag$ = fromEvent<MouseEvent>(this.document, 'mousemove')
-      .pipe(filter(el => el.button === 0))
+      .pipe(filter(el => el.button === 0 && !this.columnService.Load))
       .pipe(takeUntil(this.cleaner$));
      
   
@@ -98,6 +100,9 @@ constructor(
     if(this.dropPositionEl && this.clone && this.columnsContainer){
       this.elementRef.nativeElement.style.display = 'block'  
       this.columnsContainer.replaceChild(this.elementRef.nativeElement, this.dropPositionEl)
+      const pos = this.dropPositionEl.getAttribute('data-pos')
+      if(pos)  this.columnService.update({...this.column, pos:Number(pos)})
+
     }
   
       this.dropPositionEl?.remove()
@@ -171,7 +176,7 @@ constructor(
 
         if (column.getAttribute('data-drop-pos')) continue
         if (column.getAttribute('data-create')) continue
-        if( column.getAttribute('data-pos') === String(this.column.pos)) continue
+        if( column.getAttribute('data-column-id') === String(this.column.id)) continue
 
         const left = column.getBoundingClientRect().left
         const width = column.getBoundingClientRect().width / 2
@@ -215,11 +220,33 @@ constructor(
        this.dropPositionEl.style.background = '#fff'
        this.dropPositionEl.style.borderRadius = '10px'
        this.dropPositionEl.setAttribute('data-drop-pos', 'true')
-
+       const pos = closestColumn.getAttribute('data-pos')
        if(this.isMoveLeft){
+  
+
          board.insertBefore(this.dropPositionEl, closestColumn)
+      
+        if(pos){
+          if(pos === board.lastElementChild?.previousElementSibling?.getAttribute('data-pos')){
+            this.dropPositionEl.setAttribute('data-pos', String(Number(pos) - 1 ))
+          }else{
+              this.dropPositionEl.setAttribute('data-pos', String(Number(pos) ))
+          }
+        }
+        
        }else{
+
+        
+             if(pos){
+          if( pos === board.lastElementChild?.previousElementSibling?.getAttribute('data-pos')){
+            this.dropPositionEl.setAttribute('data-pos', String(Number(pos)))
+          }else{
+            this.dropPositionEl.setAttribute('data-pos', String(Number(pos) +1 ))
+          }
+        }
+
         board.insertBefore(this.dropPositionEl, closestColumn.nextSibling)
+   
        }
     
       this.elementRef.nativeElement.style.display = 'none'   

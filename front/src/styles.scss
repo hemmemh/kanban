@@ -3,6 +3,9 @@
 
 *{
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: none;
 }
 
 :root {
@@ -24,5 +27,10 @@ body { margin: 0; font-family: 'Inter', "Helvetica Neue", sans-serif;  overflow:
   font-weight: inherit;   
 
 }
+
+ul, ul li {
+	list-style: none;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

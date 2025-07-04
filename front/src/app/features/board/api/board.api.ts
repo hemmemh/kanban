@@ -34,6 +34,11 @@ export class BoardApi {
     return this.http.get<Board[]>(`${environment.apiUrl}/board/getAll`, {params});
   }
 
+    getByID(id:number): Observable<Board>{
+
+    return this.http.get<Board>(`${environment.apiUrl}/board/getByID/${id}`);
+  }
+
   delete(id:number): Observable<Board>{
     return this.http.delete<Board>(`${environment.apiUrl}/board/delete/${id}`);
   }

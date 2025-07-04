@@ -3,10 +3,11 @@
         <app-header/>
         <app-contain>
         <div class="list-containter">
-           <app-column [column]="{name:'1', pos:1}"/>
-           <app-column [column]="{name:'2', pos:2}"/>
-           <app-column [column]="{name:'3', pos:3}"/>
-           <app-column [column]="{name:'4', pos:4}"/>
+            @for (item of columns$ |async; track item.id) {
+                <app-column [column]="item"/>
+            }
+   
+     
            
            @if (isCreateColumn) {
             <app-create-column (onClose)="isCreateColumn = false"/>
@@ -20,6 +21,6 @@
         
     </div>
     <div class="bg-image">
-        <img src="/bg-images/bg-image-1.jpg" alt="bg-image">
+        <img [src]="apiUrl +  '/static/board-back/' + (board$ | async)?.image" alt="bg-image">
     </div>
 </div>

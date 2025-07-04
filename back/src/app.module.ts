@@ -14,10 +14,16 @@ import { BoardModule } from './modules/board/board.module';
 import { ListModule } from './modules/list/list.module';
 import { CardModule } from './modules/card/card.module';
 import { BadgeModule } from './modules/badge/badge.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: process.env.ENV === 'production' ? '.env.production' : '.env',
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'), // папка с изображениями и другими статикой
+      serveRoot: '/static', // префикс URL (опционально)
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

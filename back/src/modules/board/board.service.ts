@@ -6,6 +6,8 @@ import { CreateBoardDTO } from './dtos/create-board.dto';
 import { UserService } from '../user/user.service';
 import { UpdateBoardDTO } from './dtos/update-board.dto';
 import { GetAllBoardsDTO } from './dtos/get-all-boards.dto';
+import { join } from 'path';
+import { readdirSync } from 'fs';
 
 @Injectable()
 export class BoardService {
@@ -75,9 +77,10 @@ export class BoardService {
         async getAll(dto:GetAllBoardsDTO){
           try {
           const query = this.boardSchema.createQueryBuilder('boards')
+         
   
           if(dto.ownerId){
-              query.andWhere('boards.ownerId = :boardId', {ownerId:dto.ownerId})
+              query.andWhere('boards.ownerId = :ownerId', {ownerId:dto.ownerId})
           }
 
           return await query.getMany()
@@ -86,6 +89,21 @@ export class BoardService {
               throw new BadRequestException(`Не удалось получить доски: ${error?.message || ''}`)
           }
   
+        }
+
+        async getBackImages(){
+            const imagesDir = join(__dirname, '..', '..', '..', 'public', 'board-back');
+
+            try {
+                const files = readdirSync(imagesDir);
+
+                  const images = files.filter(file =>
+                      /\.(png|jpe?g|gif|webp|svg)$/i.test(file)
+                  );
+                  return images;
+            } catch (error) {
+                throw new BadRequestException(`Не удалось получить изображения: ${error?.message || ''}`);
+            }
         }
 
 
