@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-    {path:'',
+    {path:':id/board',
         loadComponent:() => import('./features/board/pages/board-page/board-page').then(m => m.BoardPage)
     },
     {path:':id/boards',

@@ -7,12 +7,14 @@ import { Auth } from '../../services/auth';
 @Component({
   selector: 'app-login-page',
   imports: [ReactiveFormsModule,MyInput, MyButton],
+  providers:[Auth],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss'
 })
 export class LoginPage {
 
   constructor(private authService:Auth){}
+  
     loginForm : FormGroup = new FormGroup({
     "email": new FormControl('',[Validators.required, Validators.email]),
     "password": new FormControl('', [Validators.required])

@@ -5,9 +5,7 @@ import { BehaviorSubject, firstValueFrom, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { SnackBarService } from '../../../shared/components/snack-bar/snack-bar.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class Auth {
 
   

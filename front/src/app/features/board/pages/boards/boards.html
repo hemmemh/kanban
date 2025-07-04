@@ -5,12 +5,10 @@
        
                <app-contain>
                  <div class="boards">
-                     <app-board-preview/>
-                     <app-board-preview/>
-                     <app-board-preview/>
-                     <app-board-preview/>
-                     <app-board-preview/>
-                     <app-board-preview/>
+                    @for (item of boards$ | async ; track $index) {
+                        <app-board-preview [board]="item"/>
+                    }
+                     
                      <app-create-board-button/>
                 </div>
                </app-contain>

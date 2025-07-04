@@ -1,8 +1,8 @@
-<div class="main">
+<div [routerLink]=" '/' + board.id + '/board' " class="main">
     <div class="body">
         <div class="back">
-            <img src="/bg-images/bg-image-1.jpg" alt="">
+            <img [src]="apiUrl +  '/static/board-back/' + board.image" alt="">
         </div>
-        <div class="name">Имя доски</div>
+        <div class="name">{{board.name}}</div>
     </div>
 </div>

@@ -88,6 +88,9 @@
         grid-template-columns: repeat(auto-fit, minmax(50px, 80px));
     }
     &__item{
+        &.active{
+              border: 1px solid var(--primary-color);
+        }
         cursor: pointer;
         border-radius: 5px;
         overflow: hidden;

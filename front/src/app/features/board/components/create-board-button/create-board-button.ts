@@ -1,7 +1,8 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Overlay } from '@angular/cdk/overlay';
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, Injector } from '@angular/core';
 import { CreateBoard } from '../../modals/create-board/create-board';
+import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-create-board-button',
@@ -11,7 +12,12 @@ import { CreateBoard } from '../../modals/create-board/create-board';
 })
 export class CreateBoardButton {
 
-   constructor(private dialog:Dialog,  private overlay: Overlay,private elRef:ElementRef){}
+   constructor(
+    private dialog:Dialog,  
+    private overlay: Overlay,
+    private elRef:ElementRef, 
+    private injector:Injector,
+  ){}
 
   openCreateBoard(event:MouseEvent){
     const target = this.elRef.nativeElement as HTMLElement
@@ -29,6 +35,7 @@ export class CreateBoardButton {
 
     this.dialog.open(CreateBoard, {
       positionStrategy,
+      injector:this.injector,
       maxWidth:'300px'
 });
 
