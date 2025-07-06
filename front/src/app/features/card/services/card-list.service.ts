@@ -14,7 +14,10 @@ export class CardListService {
         private snackBar:SnackBarService,
         private cardApi:CardApi,
 
-  ) {}
+  ) {
+    console.log('init cards');
+    
+  }
 
   private cards = new BehaviorSubject<CardModel[]>([])
   public cards$ = this.cards.asObservable()
@@ -52,10 +55,12 @@ export class CardListService {
 
     replace(updatedCards:CardModel[]){
       const cards = this.Cards
+          console.log('cards', cards);
       for(const card of updatedCards){
         const index = cards.findIndex(el => el.id === card.id)
         cards.splice(index,1,card)
       }
+  
       
       this.Cards = structuredClone(cards)
     }

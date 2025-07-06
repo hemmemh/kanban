@@ -4,4 +4,5 @@ export interface UpdateCardDTO {
     color:string,
     listId:number
     pos:number
+    desc:string
 }

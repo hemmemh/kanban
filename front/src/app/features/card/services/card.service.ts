@@ -53,9 +53,9 @@ export class CardService {
      async  update(dto:UpdateCardDTO){
       try {
         this.load.next(true)
-        const columns = await firstValueFrom(this.cardApi.update(dto)) 
-        this.cardListService.replace(columns)
-        return columns
+        const cards = await firstValueFrom(this.cardApi.update(dto)) 
+        this.cardListService.replace(cards)
+        return cards
       } catch (error:any) {
         this.snackBar.open(error.error.message)
         return null

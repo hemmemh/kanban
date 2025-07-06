@@ -11,7 +11,7 @@
                 <div class="closed">
                     <span></span>
                 </div>
-                <app-my-input />
+                <app-my-input [(ngModel)]="name"/>
             </div>
             <div class="actions">
                 <div (click)="openTagList($event)" class="action">
@@ -28,9 +28,9 @@
                      <div class="material-icons">list</div>
                      <div class="desc__name">Описание</div>
                 </div>
-                <app-my-text-area [autoResize]="true"/>
+                <app-my-text-area [(ngModel)]="description"  [autoResize]="true"/>
                 <div class="desc__actions">
-                    <app-my-button-filled>Сохранить</app-my-button-filled>
+                    <app-my-button-filled (onClick)="update()">Сохранить</app-my-button-filled>
                     <app-my-button>Отмена</app-my-button>
                 </div>
             </div>

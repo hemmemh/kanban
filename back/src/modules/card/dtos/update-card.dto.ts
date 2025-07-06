@@ -12,6 +12,10 @@ export class UpdateCardDTO {
   @IsString()
   name:string
 
+  @ApiProperty({ example: 'задача-1-описание', description: 'описание карточки' })
+  @IsString()
+  desc:string
+
   @ApiProperty({ example: '#f2f', description: 'Цвет карточки' })
   @IsString()
   color:string

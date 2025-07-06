@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, DOCUMENT, ElementRef, Inject, Input } from '@angular/core';
+import { AfterViewInit, Directive, DOCUMENT, ElementRef, Inject, Injector, Input } from '@angular/core';
 import { debounce, debounceTime, filter, fromEvent, Subject, takeUntil } from 'rxjs';
 import { CardModel } from '../models/card.model';
 import { E } from '@angular/cdk/keycodes';
@@ -15,6 +15,7 @@ export class CardDrag implements AfterViewInit {
     private dialog:Dialog,
     private elementRef:ElementRef,
     private cardService:CardService,
+    private injector:Injector,
     @Inject(DOCUMENT) private document: Document
   ) { }
 
@@ -191,7 +192,8 @@ export class CardDrag implements AfterViewInit {
   
 
     this.dialog.open(CardSettings, {
-   
+      data:this.card,
+      injector:this.injector,
       minWidth:'600px'
 });
 
@@ -236,7 +238,7 @@ export class CardDrag implements AfterViewInit {
       const id = newChildren.findIndex(el => el.hasAttribute('data-drop-pos'))
 
       id !== -1 && this.dropPositionEl.setAttribute('data-pos', String(id + 1))
- console.log('chill',this.dropPositionEl, id, newChildren);
+ 
   }
 
   private getClosestColumn(event:{clientY:number, clientX:number}){

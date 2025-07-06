@@ -17,6 +17,9 @@ export class CardSchema {
   @Column()
   color: string
 
+  @Column({default:''})
+  desc: string
+
   @Column()
   pos: number
 

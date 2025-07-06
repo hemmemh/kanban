@@ -4,4 +4,5 @@ export interface CardModel {
     pos:number
     color:string
     listId:number
+    desc:string
 }
