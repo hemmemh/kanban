@@ -47,11 +47,14 @@ export class ColumnListService {
       this.Columns = columns.filter(el => el.id !== id)
     }
 
-    replace(column:ColumnModel){
+    replace(updatedColumns:ColumnModel[]){
       const columns = this.Columns
+      for(const column of updatedColumns){
       const index = columns.findIndex(el => el.id === column.id)
       columns.splice(index,1,column)
-      this.Columns = structuredClone(columns)
+      
+      }
+    this.Columns = structuredClone(columns)
     }
 
 

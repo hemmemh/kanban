@@ -17,7 +17,8 @@ import { CardModel } from '../../models/card.model';
     }
   ],
   host:{
-    '[attr.data-pos]': 'card.pos'
+    '[attr.data-pos]': 'card.pos',
+    '[attr.data-id]': 'card.id',
   }
 })
 export class Card {

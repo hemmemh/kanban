@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MyButton } from '../../../../shared/components/my-button/my-button';
+import { ColumnService } from '../../services/column.service';
+import { ColumnModel } from '../../models/column.model';
 
 @Component({
   selector: 'app-create-card-button',
@@ -11,5 +13,11 @@ import { MyButton } from '../../../../shared/components/my-button/my-button';
   }
 })
 export class CreateCardButton {
- @Input({required:true}) color!:string
+
+  constructor(private columnService:ColumnService){}
+ @Input({required:true}) column!:ColumnModel
+
+ selectColumnId(){
+  this.columnService.SelectedColumnId = this.column.id
+ }
 }

@@ -20,4 +20,8 @@ export class UpdateCardDTO {
   @IsNumber()
   pos:number
 
+  @ApiProperty({ example: 1, description: 'ID листа' })
+  @IsNumber()
+  listId:number
+
 }

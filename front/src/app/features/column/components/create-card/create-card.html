@@ -1,5 +1,5 @@
 <div class="main">
     <div class="body">
-        <app-my-text-area (onEnter)="create()"  [minHeight]="80" [autoResize]="true"/>
+        <app-my-text-area [(ngModel)]="name" (onEnter)="create()"  [minHeight]="80" [autoResize]="true"/>
     </div>
 </div>

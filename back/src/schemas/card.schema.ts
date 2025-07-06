@@ -20,7 +20,9 @@ export class CardSchema {
   @Column()
   pos: number
 
-
+  @Column()
+  listId: number;
+  
   @ManyToOne(() => ListSchema, (list) => list.cards, { onDelete: 'CASCADE'})
   list: ListSchema
 

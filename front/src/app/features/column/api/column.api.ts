@@ -19,8 +19,8 @@ export class ColumnApi {
     return this.http.post<ColumnModel>(`${environment.apiUrl}/list/create`, dto);
   }
 
-  update(dto:UpdateListDTO): Observable<ColumnModel>{
-    return this.http.patch<ColumnModel>(`${environment.apiUrl}/list/update`, dto);
+  update(dto:UpdateListDTO): Observable<ColumnModel[]>{
+    return this.http.patch<ColumnModel[]>(`${environment.apiUrl}/list/update`, dto);
   }
   delete(id:number): Observable<ColumnModel>{
     return this.http.delete<ColumnModel>(`${environment.apiUrl}/list/delete/${id}`);

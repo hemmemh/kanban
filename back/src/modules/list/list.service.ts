@@ -1,8 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateListDTO } from './dtos/create-list.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ListSchema } from 'src/schemas/list.schema';
-import { Repository } from 'typeorm';
+import { And, LessThan, LessThanOrEqual, MoreThan, MoreThanOrEqual, Not, Repository } from 'typeorm';
 import { BoardService } from '../board/board.service';
 import { UpdateListDTO } from './dtos/update-list.dto';
 import { GetAllListsDTO } from './dtos/get-all-list.dto';
@@ -39,7 +39,8 @@ export class ListService {
           }
     
         async update(dto:UpdateListDTO){
-    
+        let  els:ListSchema[] = []
+
           const finded =  await this.listSchema.findOne({where:{id:dto.id}})
             if(!finded){
                  throw new NotFoundException('Не удалось найти лист');
@@ -47,11 +48,64 @@ export class ListService {
              try {
                await this.listSchema.save({...finded, ...dto})  
                const list = await this.listSchema.findOne({where:{id:dto.id}})
-               return list
+               list && els.push(list)
+                if (dto.pos !== finded.pos && list) {
+                      els = els.concat(await this.updateListsByPrevList(list, finded.pos))
+                }
+
+                
+                return els
+               
+            
              } catch (error) {
                throw new BadRequestException(`Не удалось обновить лист: ${error?.message || ''}`);
              }
         }
+
+
+
+        private async  updateListsByPrevList(list:ListSchema, prevPos:number){
+          try {
+            const els:ListSchema[] = []
+                 if(list.pos < prevPos){
+                               const lists = await this.listSchema.find({
+                               where:{
+                                boardId:list.boardId, 
+                                id:Not(list.id), 
+                                pos:And(MoreThanOrEqual(list.pos), LessThan(prevPos)),
+                                
+                              },
+                              order: { pos: 'ASC' },
+                              })
+        
+                              for(const list of lists){
+                               const el = await this.listSchema.save({...list, pos:list.pos + 1})  
+                               els.push(el)
+                             }
+        
+                            } else{
+        
+                             const lists = await this.listSchema.find({
+                              where:{
+                                boardId:list.boardId, 
+                                id:Not(list.id),  
+                                pos: And(MoreThan(prevPos), LessThanOrEqual(list.pos)),
+                                
+                              },
+                              order: { pos: 'ASC' },
+                            })
+        
+                               for(const list of lists){
+                               const el = await this.listSchema.save({...list, pos:list.pos - 1})  
+                               els.push(el)
+                             }
+                            }
+
+                            return els
+              } catch (error) {
+                 throw new InternalServerErrorException(`Не удалось обновить позиции последующих колонок: ${error?.message || ''}`);
+              }
+          }
         
         async delete(id:number){
             const finded =  await this.listSchema.findOne({where:{id}})

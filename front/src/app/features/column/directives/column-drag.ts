@@ -161,6 +161,7 @@ constructor(
     clonedElement.style.position = 'fixed'
     clonedElement.style.zIndex = '1000'
     clonedElement.style.opacity = '0.6'
+    clonedElement.style.flex = `0 0 ${this.elementWidth}px`
     const top = this.elChild.getBoundingClientRect().top
     const left = this.elChild.getBoundingClientRect().left
     clonedElement.style.transform = 'rotate(20deg)'
@@ -219,6 +220,7 @@ constructor(
        this.dropPositionEl.style.height = this.elementHeight + 'px'
        this.dropPositionEl.style.background = '#fff'
        this.dropPositionEl.style.borderRadius = '10px'
+       this.dropPositionEl.style.flex = `0 0 ${this.elementWidth}px`
        this.dropPositionEl.setAttribute('data-drop-pos', 'true')
        const pos = closestColumn.getAttribute('data-pos')
        if(this.isMoveLeft){

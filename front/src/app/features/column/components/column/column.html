@@ -2,11 +2,16 @@
     <div class="body">
         <app-header [column]="column"/>
         <div class="cards">
-            <app-card [card]="{name:'1', pos:1}"/>
-            <app-card [card]="{name:'2', pos:2}"/>
-            <app-card [card]="{name:'3', pos:3}"/>
-            <app-card [card]="{name:'4', pos:4}"/>
-            <app-create-card-button [color]="column.color"/>
+            @for (item of cards$ | async ; track item.id) {
+                <app-card  [card]="item"/>
+            }
+            @if ((selectedColumnId$ | async) === column.id) {
+                 <app-create-card [listID]="column.id"/>
+            } @else {
+                 <app-create-card-button  [column]="column"/>
+            }
+            
+    
        
         </div>
     </div>

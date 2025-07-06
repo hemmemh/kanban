@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CardService } from './card.service';
 import { CreateCardDTO } from './dtos/create-card.dto';
 import { UpdateCardDTO } from './dtos/update-card.dto';
+import { GetAllCardsDTO } from './dtos/get-all-cards.dto';
 
 @ApiTags('cards')
 @Controller('card')
@@ -24,5 +25,10 @@ export class CardController {
         @Delete('/delete/:id')
         delete(@Param('id', ParseIntPipe) id:number) {
           return this.cardService.delete(id)
+        }
+
+        @Get('/getAll')
+        getAll(@Query() query:GetAllCardsDTO){
+           return this.cardService.getAll(query)
         }
 }

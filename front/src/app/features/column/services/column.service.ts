@@ -19,10 +19,22 @@ export class ColumnService {
   
      private load = new BehaviorSubject<boolean>(false)
      public load$ = this.load.asObservable()
+
+    private selectedColumnId = new BehaviorSubject<number>(-1)
+     public selectedColumnId$ = this.selectedColumnId.asObservable()
    
     get Load(){
       return this.load.value
     }
+
+    get SelectedColumnId(){
+      return this.selectedColumnId.value
+    }
+
+    set SelectedColumnId(id:number){
+       this.selectedColumnId.next(id)
+    }
+
     async  create(name:string){
       try {
         this.load.next(true)
@@ -52,9 +64,9 @@ export class ColumnService {
      async  update(dto:UpdateListDTO){
       try {
         this.load.next(true)
-        const column = await firstValueFrom(this.columnApi.update(dto)) 
-        this.columnListService.replace(column)
-        return column
+        const columns = await firstValueFrom(this.columnApi.update(dto)) 
+        this.columnListService.replace(columns)
+        return columns
       } catch (error:any) {
         this.snackBar.open(error.error.message)
         return null

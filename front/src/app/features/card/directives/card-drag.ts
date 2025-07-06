@@ -4,6 +4,7 @@ import { CardModel } from '../models/card.model';
 import { E } from '@angular/cdk/keycodes';
 import { Dialog } from '@angular/cdk/dialog';
 import { CardSettings } from '../modals/card-settings/card-settings';
+import { CardService } from '../services/card.service';
 
 @Directive({
   selector: '[appCardDrag]'
@@ -13,6 +14,7 @@ export class CardDrag implements AfterViewInit {
   constructor(
     private dialog:Dialog,
     private elementRef:ElementRef,
+    private cardService:CardService,
     @Inject(DOCUMENT) private document: Document
   ) { }
 
@@ -78,6 +80,7 @@ export class CardDrag implements AfterViewInit {
 
    private onEscape(){
       this.elementRef.nativeElement.style.display = 'block'
+      this.elementRef.nativeElement.removeAttribute('hide')
       this.dropPositionEl?.remove()
       this.dropPositionEl = null
       this.clone?.remove()
@@ -124,7 +127,18 @@ export class CardDrag implements AfterViewInit {
 
     if(this.dropPositionEl && this.clone && this.cardsContainer){
       this.elementRef.nativeElement.style.display = 'block'
+      this.elementRef.nativeElement.removeAttribute('hide')
       this.cardsContainer.replaceChild(this.elementRef.nativeElement, this.dropPositionEl)
+      const pos = this.dropPositionEl.getAttribute('data-pos')
+      const closestColumn = this.cardsContainer.closest('[data-column-id]')
+      console.log(closestColumn);
+      
+      if(pos && closestColumn){
+        const listId = closestColumn.getAttribute('data-column-id')
+        console.log('listID', listId);
+        
+        listId && this.cardService.update({...this.card, pos:Number(pos), listId: Number(listId) })
+      }
     }
     if(!this.isDragging) this.openCardSettings()
   
@@ -193,15 +207,36 @@ export class CardDrag implements AfterViewInit {
        this.dropPositionEl.style.borderRadius = '10px'
        this.dropPositionEl.setAttribute('data-drop-pos', 'true')
 
+
+      
        if(this.isMoveTop){
          closestColumn.insertBefore(this.dropPositionEl, closestCard)
        }else{
         closestColumn.insertBefore(this.dropPositionEl, closestCard.nextSibling)
        }
     
-       this.elementRef.nativeElement.style.display = 'none'
+ this.elementRef.nativeElement.style.display = 'none'
+  this.elementRef.nativeElement.setAttribute('hide','true')
+       this.updateDropPositionElDataPosAtr(closestColumn)
+      
+      
       
       }
+  }
+
+  private updateDropPositionElDataPosAtr(closestColumn:Element){
+    if(!this.dropPositionEl) return
+         const children = closestColumn.children
+        const newChildren:Element[] = []
+       for(const child of children){
+        if((child.hasAttribute('data-id') || child.hasAttribute('data-drop-pos')) && !child.hasAttribute('hide')) newChildren.push(child)
+       }
+     
+      
+      const id = newChildren.findIndex(el => el.hasAttribute('data-drop-pos'))
+
+      id !== -1 && this.dropPositionEl.setAttribute('data-pos', String(id + 1))
+ console.log('chill',this.dropPositionEl, id, newChildren);
   }
 
   private getClosestColumn(event:{clientY:number, clientX:number}){
@@ -228,7 +263,7 @@ export class CardDrag implements AfterViewInit {
 
         if (card.getAttribute('data-drop-pos')) continue
         if (card.getAttribute('data-create')) continue
-        if( card.getAttribute('data-pos') === String(this.card.pos)) continue
+        if( card.getAttribute('data-id') === String(this.card.id)) continue
 
         const top = card.getBoundingClientRect().top
         const height = card.getBoundingClientRect().height / 2

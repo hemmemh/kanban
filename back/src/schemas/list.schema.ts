@@ -18,6 +18,8 @@ export class ListSchema {
   @Column()
   pos: number
 
+  @Column()
+  boardId: number;
 
   @ManyToOne(() => BoardSchema, (board) => board.lists, { onDelete: 'CASCADE'})
   board: BoardSchema
