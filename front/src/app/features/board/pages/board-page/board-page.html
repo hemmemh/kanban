@@ -1,7 +1,7 @@
 <div class="main">
     <div class="body">
         <app-header/>
-        <app-contain>
+        <app-contain class="container">
         <div class="list-containter">
             @for (item of columns$ |async; track item.id) {
                 <app-column [column]="item"/>

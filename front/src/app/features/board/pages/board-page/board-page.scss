@@ -4,6 +4,8 @@
     user-select: none;
 }
 .body{
+    display: flex;
+    flex-direction: column;
     height: 100%;
     position: relative;
     z-index: 1;
@@ -22,9 +24,13 @@
     }
 }
 
+.container{
+flex: 1 1 auto;
+}
 .list-containter{
     height: 100%;
     padding: 10px 0;
+    
     display: flex;
     gap: 10px;
     overflow: auto;
